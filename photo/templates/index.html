@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+    <meta charset="UTF-8">
+    <title>ai_photo_project</title>
+     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript">
+        $(function(){
+                var list={};
+                query(list);
+                function query(query_list){
+                $.ajax({
+                url: 'http://127.0.0.1:8081/photo/query/',
+                type: 'POST',
+                dataType: 'json',
+                data:query_list,
+                success:function(date){
+                    var photoSet=$(date.date);
+                    for(var i=0;i<photoSet.length;i++){
+                        html=$('.table').html();
+                        $('.table').html(html+"<tr><td>"+photoSet[i].id+"</td>"
+                            +"<td>"+photoSet[i].car_name+"</td>"
+                            +"<td>"+photoSet[i].car_groupId+"</td>"
+                            +"<td>"+photoSet[i].photo_url+"</td>"
+                            +"<td>"+photoSet[i].buildId+"</td>"
+                            +"<td>"+photoSet[i].deviceType+"</td>"
+                            +"<td>"+photoSet[i].isPass+"</td>"
+                            +'<td><a href="#">修改</a></td></tr>'
+                            );
+                    }
+                },
+                error:function(){
+                    alert('服务器超时，请重试！');
+                }
+            });
+            }
+           
+        });
+    </script>
+</head>
+
+<div class="top">
+	<div class="query">
+		<label>id:<input type="text" name=""></label>
+		<label>车系名称:<input type="text" name=""></label>
+		<label>车系id:<input type="text" name=""></label>
+		<label>图片url:<input type="text" name=""></label>
+		<label>设备类型：<input type="text" name=""></label>
+		<label>测试结果:<input type="text" name=""></label>
+		<label>开始时间:<input type="text" name=""></label>
+		<label>结束时间:<input type="text" name=""></label>
+		<input type="button" name="" value="查询">
+	</div>
+<form enctype="multipart/form-data" method="POST" action="/photo/upload/">
+   <input name="uploadFile" type="file" id="uploadFile" multiple class="file-loading" />
+   <input type="submit" value="上传文件" class="fl" />   
+
+</form>
+</div>
+<div class="center">
+	<table class="table table-striped">
+<thead>
+<tr>
+    <th>id</th>
+    <th>车系名称</th>
+    <th>车系id</th>
+    <th>图片地址</th>
+    <th>版本号</th>
+    <th>设备类型</th>
+    <th>测试结果</th>
+    <th>操作</th>
+</tr>
+</thead>
+<tbody>
+<!-- {% for event in events %}
+<tr>
+    <td>{{ event.id }}</td>
+    <td>{{ event.name }}</td>
+    <td>{{ event.limit }}</td>
+    <td>{{ event.isPass }}</td>
+    <td>{{ event.address }}</td>
+    <td>{{ event.start_time }}</td>
+    <td>{{ event.create_time }}</td>
+    <td><a href="#">签到</a>/<a href="#">修改</a></td>
+</tr>
+{% endfor %} -->
+</tbody>
+</table>
+</div>
+
+
+<body>
+
+</body>
+</html>

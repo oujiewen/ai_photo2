@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+    	$(function(){
+    		$('#uploadfile').click(function(){
+    			$("#myfile").click();
+    		});
+    		$("#myfile").change(function(){
+    			$('#uploadfile').val($("#myfile").val());
+    		})
+    		$('#clear').click(function(){
+    		  $('.form-control').val('');
+
+    		})
+
+    	})
+    </script>
+    <title>Title</title>
+</head>
+<div class="search">
+
+	<form action="/photo/queryAdmin/" method="post">
+	    <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">id</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1" value="{{ filter.id }}" name="id" id="id">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">车系名称</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1" value="{{ filter.car_name }}" name="car_name">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">车系id</span>
+            <input id="chexiid" type="text" class="form-control"  aria-describedby="basic-addon1" value="{{ filter.car_groupId }}" name="car_groupId">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">图片地址</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1" value="{{ filter.photo_url }}" name="photo_url">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">版本号</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1" value="{{ filter.buildId }}" name="buildId">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">设备类型</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1" value="{{ filter.deviceType }}" name="deviceType">
+        </div>
+
+
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">测试结果</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="{{ filter.isPass }}" name="isPass">
+        </div>
+        <a href="/photo/0/" class="btn btn-danger fl">新建</a>
+        <input type="submit" value="查询" class="btn btn-success fl">
+        </form>
+            <button id='clear'class="btn btn-info fl">重置</button>
+
+        <form enctype="multipart/form-data" method="POST" action="/photo/upload/">			
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">上传文件</span>
+            <input type="file" class="form-control" aria-describedby="basic-addon1" name="txt" id="myfile" style="display: none;">
+            <input type="text" class="form-control input" aria-describedby="basic-addon1" name="txt" id='uploadfile'>
+
+        </div>
+        <input type="submit" value="上传" class="fl btn btn-danger" />
+        <input type="submit" value="导出" class="fl btn btn-success" />
+        </form>
+
+
+
+</div>
+<body>
+<div class="list_mian">
+<table class="table table-striped">
+<thead>
+<tr>
+    <th>id</th>
+    <th>车系名称</th>
+    <th>车系id</th>
+    <th>图片地址</th>
+    <th>版本号</th>
+    <th>设备类型</th>
+    <th>测试结果</th>
+    <th>操作</th>
+</tr>
+</thead>
+<tbody>
+{% for photo in photos %}
+<tr>
+    <td>{{ photo.id }}</td>
+    <td>{{ photo.car_name }}</td>
+    <td>{{ photo.car_groupId }}</td>
+    <td>{{ photo.photo_url }}</td>
+    <td>{{ photo.buildId }}</td>
+    <td>{{ photo.deviceType }}</td>
+    <td>{{ photo.isPass }}</td>
+    <td><a href="/photo/{{ photo.id }}">修改</a>/<a href="/photo/delete/{{ photo.id }}">删除</a>/<a href="/photo/delete/{{ photo.id }}">执行</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            height:416px;
+            width:400px;
+            margin:100px auto;
+
+        }
+        .input-group{
+            margin:0px auto 20px;
+        }
+
+    </style>
+</head>
+<body>
+{% for photo in photos %}
+<div class="box">
+    <form method="post" action="/photo/updatephoto/{{photo.id}}/">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">id</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1" value="{{ photo.id }}" name="id" disabled="disabled">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">车系名称</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1" value="{{ photo.car_name }}" name="car_name">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">车系id</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1" value="{{ photo.car_groupId }}" name="car_groupId">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">图片地址</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1" value="{{ photo.photo_url }}" name="photo_url">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">版本号</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1" value="{{ photo.buildId }}" name="buildId">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">设备类型</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1" value="{{ photo.deviceType }}" name="deviceType">
+        </div>
+
+
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">测试结果</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="{{ photo.isPass }}" name="isPass">
+        </div>
+
+        <div class="input-group">
+            <button type="submit" class="btn btn-success">保存</button>
+        </div>
+
+    </form>
+
+</div>
+    {% empty %}
+    <div class="box">
+    <form method="post" action="/photo/updatephoto/0/">
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">id</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1" name="id" disabled="disabled">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">车系名称</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1"  name="car_name">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">车系id</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1"  name="car_groupId">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">图片地址</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1"  name="photo_url">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">版本号</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1"  name="buildId">
+        </div>
+
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">设备类型</span>
+            <input type="text" class="form-control"  aria-describedby="basic-addon1"  name="deviceType">
+        </div>
+
+
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">测试结果</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1"  name="isPass">
+        </div>
+
+        <div class="input-group">
+            <button type="submit" class="btn btn-success">保存</button>
+        </div>
+
+    </form>
+
+</div>
+    {% endfor %}
+</body>
+</html>

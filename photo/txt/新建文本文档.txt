@@ -1,0 +1,11 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <title>文件上传</title>
+    <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js">
+    </head>
+    <body> 
+        <input class='ab' values='123' type='file'>
+    </body>
+    </html>

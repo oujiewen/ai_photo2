@@ -1,0 +1,33 @@
+.top{
+	height: 150px;
+	background-color: #ddd;
+}
+.query{
+	margin:0 auto 0;
+}
+
+.search{
+	height: 80px;
+	border-bottom: 3px solid #ddd;
+}
+.list_mian{
+	margin:0 auto 0;
+}
+.list_mian .table-striped{
+	text-align: center;
+}
+.list_mian .table-striped th{
+	text-align: center;
+}
+
+
+.search .input-group{
+	float: left;
+	margin: 2px 15px 2px 0px;
+	width: 250px;
+
+}
+.search .btn{
+	margin-right: 20px;
+	margin-top: 2px;
+}
